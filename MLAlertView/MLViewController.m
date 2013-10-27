@@ -8,16 +8,24 @@
 
 #import "MLViewController.h"
 
+#import "MLAlertView.h"
+
 @interface MLViewController ()
 
 @end
 
 @implementation MLViewController
 
+- (IBAction)showAlert {
+    MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" withMessage:@"Message" withCancelButtonTitle:@"Cancel"];
+    [alert show];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 - (void)didReceiveMemoryWarning

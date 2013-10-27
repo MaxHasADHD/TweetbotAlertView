@@ -21,6 +21,7 @@
 		AA33737A181CECBF0090A9C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA33735C181CECBF0090A9C8 /* UIKit.framework */; };
 		AA337382181CECBF0090A9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA337380181CECBF0090A9C8 /* InfoPlist.strings */; };
 		AA337384181CECBF0090A9C8 /* MLAlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA337383181CECBF0090A9C8 /* MLAlertViewTests.m */; };
+		AA33738F181CECDE0090A9C8 /* MLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA33738E181CECDE0090A9C8 /* MLAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		AA33737F181CECBF0090A9C8 /* MLAlertViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MLAlertViewTests-Info.plist"; sourceTree = "<group>"; };
 		AA337381181CECBF0090A9C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA337383181CECBF0090A9C8 /* MLAlertViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLAlertViewTests.m; sourceTree = "<group>"; };
+		AA33738D181CECDE0090A9C8 /* MLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAlertView.h; sourceTree = "<group>"; };
+		AA33738E181CECDE0090A9C8 /* MLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				AA33736A181CECBF0090A9C8 /* Main.storyboard */,
 				AA33736D181CECBF0090A9C8 /* MLViewController.h */,
 				AA33736E181CECBF0090A9C8 /* MLViewController.m */,
+				AA33738D181CECDE0090A9C8 /* MLAlertView.h */,
+				AA33738E181CECDE0090A9C8 /* MLAlertView.m */,
 				AA337370181CECBF0090A9C8 /* Images.xcassets */,
 				AA33735F181CECBF0090A9C8 /* Supporting Files */,
 			);
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA33738F181CECDE0090A9C8 /* MLAlertView.m in Sources */,
 				AA337365181CECBF0090A9C8 /* main.m in Sources */,
 				AA33736F181CECBF0090A9C8 /* MLViewController.m in Sources */,
 				AA337369181CECBF0090A9C8 /* MLAppDelegate.m in Sources */,
