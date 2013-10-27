@@ -1,6 +1,6 @@
 ## MLAlertView
 
-A clone of the alert view found in Tweetbot 3
+Tweetbot 3 alert view style and animation
 
 <img src="Preview1.png" alt="MLAlertView" height="568" width="320" hspace="20"/>
 <img src="Preview2.png" alt="MLAlertView" height="568" width="320"/>
