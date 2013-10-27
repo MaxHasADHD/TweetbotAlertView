@@ -5,7 +5,7 @@ Tweetbot 3 alert view style and animation
 <img src="Preview1.png" alt="MLAlertView" height="568" width="320" hspace="20"/>
 <img src="Preview2.png" alt="MLAlertView" height="568" width="320"/>
 
-Video of alert: http://cl.ly/2p0I453k2z2j
+Video of alert: http://cl.ly/S9hY
 
 ## License
 
