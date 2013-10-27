@@ -8,6 +8,8 @@
 
 #import "MLAlertView.h"
 
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
 @interface MLAlertView () <UICollisionBehaviorDelegate>
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic, strong) UIAttachmentBehavior *attachmentBehavior;
@@ -40,7 +42,7 @@
     CGAffineTransform scale = CGAffineTransformMakeScale(5, 5);
     self.transform = scale;
     [[[UIApplication sharedApplication] windows][0] addSubview:self];
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 1.0;
         self.transform = CGAffineTransformIdentity;
     }];
@@ -50,14 +52,15 @@
     
     UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:[[UIApplication sharedApplication] windows][0]];
     
-    CGPoint squareCenterPoint = CGPointMake(self.center.y, self.center.y);
-    UIOffset attachmentPoint = UIOffsetMake(CGRectGetMaxX(self.frame), self.center.y);
+    CGPoint squareCenterPoint = CGPointMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.frame));
+    UIOffset attachmentPoint = UIOffsetMake(CGRectGetMinX(self.frame), CGRectGetMaxY(self.frame));
     UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self offsetFromCenter:attachmentPoint attachedToAnchor:squareCenterPoint];
     [animator addBehavior:attachmentBehavior];
     self.attachmentBehavior = attachmentBehavior;
     
     UIGravityBehavior *gravityBeahvior = [[UIGravityBehavior alloc] initWithItems:@[self]];
-    gravityBeahvior.magnitude = 2;
+    gravityBeahvior.magnitude = 4;
+    gravityBeahvior.angle = DEGREES_TO_RADIANS(100);
     [animator addBehavior:gravityBeahvior];
     self.gravityBehavior = gravityBeahvior;
     
@@ -76,7 +79,7 @@
     if (self) {
         
         
-        UIFont *font = [UIFont systemFontOfSize:14];;
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
         CGFloat currentWidth = 280;
         CGSize maximumSize = CGSizeMake(currentWidth, CGFLOAT_MAX);
@@ -109,7 +112,7 @@
         messageView.font = font;
         messageView.editable = NO;
         messageView.dataDetectorTypes = UIDataDetectorTypeAll;
-        messageView.scrollEnabled = NO;
+        messageView.userInteractionEnabled = NO;
         messageView.textAlignment = NSTextAlignmentCenter;
         [self addSubview:messageView];
         
