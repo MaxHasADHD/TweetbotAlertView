@@ -2,22 +2,42 @@
 //  MLViewController.m
 //  MLAlertView
 //
-//  Created by Maximilian Litteral on 10/26/13.
-//  Copyright (c) 2013 Maximilian Litteral. All rights reserved.
+//  Copyright (c) 2013 Maximilian Litteral.
+//  See LICENSE for full license agreement.
 //
 
 #import "MLViewController.h"
 
 #import "MLAlertView.h"
 
-@interface MLViewController ()
+@interface MLViewController () <MLAlertViewDelegate>
 
 @end
 
 @implementation MLViewController
 
-- (IBAction)showAlert {
-    MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" withMessage:@"Message" withCancelButtonTitle:@"Cancel"];
+- (void)alertView:(MLAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"%li",(long)buttonIndex);
+    [alertView dismiss];
+}
+
+- (IBAction)mlalert2Buttons {
+    MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open"]];
+    [alert show];
+}
+
+- (IBAction)mlalert3Buttons {
+    MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"]];
+    [alert show];
+}
+
+- (IBAction)alert2Buttons {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Open", nil];
+    [alert show];
+}
+
+- (IBAction)alert3Buttons {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Open",@"Testing", nil];
     [alert show];
 }
 

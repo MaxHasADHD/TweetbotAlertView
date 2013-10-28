@@ -2,15 +2,26 @@
 //  MLAlertView.h
 //  MLAlertView
 //
-//  Created by Maximilian Litteral on 10/26/13.
-//  Copyright (c) 2013 Maximilian Litteral. All rights reserved.
+//  Copyright (c) 2013 Maximilian Litteral.
+//  See LICENSE for full license agreement.
 //
 
 #import <UIKit/UIKit.h>
 
+@class MLAlertView;
+
+@protocol MLAlertViewDelegate <NSObject>
+
+- (void)alertView:(MLAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+
+@end
+
 @interface MLAlertView : UIView
 
-- (instancetype)initWithTitle:(NSString *)title withMessage:(NSString *)message withCancelButtonTitle:(NSString *)cancelButtontitle ;
+@property (nonatomic, assign) id<MLAlertViewDelegate> delegate;
+
+- (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
 - (void)show;
+- (void)dismiss;
 
 @end

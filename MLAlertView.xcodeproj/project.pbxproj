@@ -467,6 +467,7 @@
 				AA337389181CECBF0090A9C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA33738A181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "MLAlertViewTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +476,7 @@
 				AA33738C181CECBF0090A9C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

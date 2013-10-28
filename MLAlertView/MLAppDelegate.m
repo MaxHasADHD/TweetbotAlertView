@@ -2,8 +2,8 @@
 //  MLAppDelegate.m
 //  MLAlertView
 //
-//  Created by Maximilian Litteral on 10/26/13.
-//  Copyright (c) 2013 Maximilian Litteral. All rights reserved.
+//  Copyright (c) 2013 Maximilian Litteral.
+//  See LICENSE for full license agreement.
 //
 
 #import "MLAppDelegate.h"
