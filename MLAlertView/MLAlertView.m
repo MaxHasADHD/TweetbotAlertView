@@ -94,8 +94,10 @@
         CGSize maximumSize = CGSizeMake(currentWidth, CGFLOAT_MAX);
         CGRect boundingRect = [message boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{ NSFontAttributeName : font} context:nil];
         CGFloat height = boundingRect.size.height + 16.0+40+extraHeight;
-        
-        self.frame = CGRectMake(20, 568/2-height/2, 280, height);
+
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+
+        self.frame = CGRectMake(20, (screenHeight-height)/2, 280, height);
         self.backgroundColor = [UIColor whiteColor];
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = 13;
