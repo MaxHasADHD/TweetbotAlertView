@@ -84,11 +84,15 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 1.0;
         self.transform = CGAffineTransformIdentity;
+        
+        self.window.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+        self.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     }];
+    
 }
 
 - (void)dismiss {
-    
+    self.userInteractionEnabled = NO;
     UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:[[UIApplication sharedApplication] windows][0]];
     
     CGPoint squareCenterPoint = CGPointMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.frame));
@@ -105,6 +109,11 @@
     
     self.animator = animator;
     [self performSelector:@selector(removeFromSuperview) withObject:self afterDelay:0.7];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+    }];
+    
 }
 
 - (void)alertButtonWasTapped:(UIButton *)button {
