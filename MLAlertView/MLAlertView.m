@@ -68,12 +68,34 @@
 }
 
 - (void)alertButtonWasTapped:(UIButton *)button {
+  
+  if(self.delegate!=nil)
+  {
     [self.delegate alertView:self clickedButtonAtIndex:button.tag];
+    
+  } else if (self.buttonDidTappedBlock!=nil){
+    self.buttonDidTappedBlock(self, button.tag);
+  }
 }
 
-#pragma mark - setup
+#pragma mark - initializers
 
-- (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles {
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles
+{
+return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles];
+}
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles usingBlockWhenTapButton:(MLAlertTapButtonBlock)tapButtonBlock
+{
+  self = [self initWithTitle:title message:message delegate:nil cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles];
+  
+  self.buttonDidTappedBlock = tapButtonBlock;
+  
+  return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles {
     self = [super init];
     if (self) {
         _delegate = delegate;
