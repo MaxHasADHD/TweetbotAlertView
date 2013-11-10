@@ -10,6 +10,8 @@
 
 @class MLAlertView;
 
+typedef void (^MLAlertTapButtonBlock)(MLAlertView *alertView, NSInteger buttonIndex);
+
 @protocol MLAlertViewDelegate <NSObject>
 
 - (void)alertView:(MLAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
@@ -20,8 +22,17 @@
 
 @property (nonatomic, assign) id<MLAlertViewDelegate> delegate;
 
-- (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
+@property (nonatomic, copy) MLAlertTapButtonBlock buttonDidTappedBlock;
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles usingBlockWhenTapButton:(MLAlertTapButtonBlock)tapButtonBlock;
+
+
 - (void)show;
+
 - (void)dismiss;
 
 @end
