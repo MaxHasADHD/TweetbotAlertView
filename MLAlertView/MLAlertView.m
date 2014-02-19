@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *topPart;
+@property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) NSArray *otherButtons;
 @end
 
 @implementation MLAlertView
@@ -36,6 +38,8 @@
     return image;
 }
 
+#pragma mark - Setters
+
 - (void) setTitleBackgroundColor:(UIColor *)titleBackgroundColor {
     _titleBackgroundColor = titleBackgroundColor;
     self.topPart.backgroundColor = _titleBackgroundColor;
@@ -44,6 +48,18 @@
 - (void) setTitleForegroundColor:(UIColor *)titleForegroundColor {
     _titleForegroundColor = titleForegroundColor;
     self.titleLabel.textColor = _titleForegroundColor;
+}
+
+- (void) setHighlightedCancelButtonBackgroundColor:(UIColor *)selectedCancelButtonBackgroundColor {
+    _highlightedCancelButtonBackgroundColor = selectedCancelButtonBackgroundColor;
+    [self.cancelButton setBackgroundImage:[self imageWithColor:_highlightedCancelButtonBackgroundColor] forState:UIControlStateHighlighted];
+}
+
+- (void) setHighlightedButtonBackgroundColor:(UIColor *)highlightedButtonBackgroundColor {
+    _highlightedButtonBackgroundColor = highlightedButtonBackgroundColor;
+    for(UIButton *button in _otherButtons) {
+        [button setBackgroundImage:[self imageWithColor:highlightedButtonBackgroundColor] forState:UIControlStateHighlighted];
+    }
 }
 
 #pragma mark - Actions
@@ -111,8 +127,6 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
     self = [super init];
     if (self) {
         _delegate = delegate;
-        _titleBackgroundColor = [UIColor colorWithRed:0.063 green:0.486 blue:0.965 alpha:1.000];
-        _titleForegroundColor = [UIColor whiteColor];
         UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
         CGFloat currentWidth = 280;
@@ -140,12 +154,12 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
         
         //Title View
         self.topPart = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 40)];
-        self.topPart.backgroundColor = _titleBackgroundColor;
+        self.titleBackgroundColor = [UIColor colorWithRed:0.063 green:0.486 blue:0.965 alpha:1.000];;
         [self addSubview:self.topPart];
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 40)];
         self.titleLabel.text = title;
-        self.titleLabel.textColor = _titleForegroundColor;
+        self.titleForegroundColor = [UIColor whiteColor];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
         [self.topPart addSubview:self.titleLabel];
@@ -180,24 +194,26 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
         [self addSubview:buttonView];
         
         if (cancelButtonTitle) {
-            UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
             if ([otherButtonTitles count] == 1) {
-                cancelButton.frame = CGRectMake(0, 0, 141, 40);
+                self.cancelButton.frame = CGRectMake(0, 0, 141, 40);
             }
-            else cancelButton.frame = CGRectMake(0, CGRectGetHeight(buttonView.frame)-40, 280, 40);
+            else self.cancelButton.frame = CGRectMake(0, CGRectGetHeight(buttonView.frame)-40, 280, 40);
             
-            [cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
-            [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [cancelButton setTitleColor:[UIColor colorWithRed:0.769 green:0.000 blue:0.071 alpha:1.000] forState:UIControlStateHighlighted];
-            [cancelButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.933 green:0.737 blue:0.745 alpha:1.000]] forState:UIControlStateHighlighted];
-            cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-            [cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-            cancelButton.tag = 0;
-            [buttonView addSubview:cancelButton];
+            [self.cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
+            [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [self.cancelButton setTitleColor:[UIColor colorWithRed:0.769 green:0.000 blue:0.071 alpha:1.000] forState:UIControlStateHighlighted];
+            self.highlightedCancelButtonBackgroundColor = [UIColor colorWithRed:0.933 green:0.737 blue:0.745 alpha:1.000];
+            self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+            [self.cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+            self.cancelButton.tag = 0;
+            [buttonView addSubview:self.cancelButton];
         }
         
+        NSMutableArray *otherButtons = [[NSMutableArray alloc] initWithCapacity:[otherButtonTitles count]];
         for (int i=0; i<[otherButtonTitles count]; i++) {
             UIButton *otherTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [otherButtons addObject:otherTitleButton];
             
             if ([otherButtonTitles count] == 1 && !cancelButtonTitle) {
                 //1 other button and no cancel button
@@ -228,10 +244,11 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
             [otherTitleButton setTitle:otherButtonTitles[i] forState:UIControlStateNormal];
             [otherTitleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [otherTitleButton setTitleColor:[UIColor colorWithRed:0.071 green:0.431 blue:0.965 alpha:1.000] forState:UIControlStateHighlighted];
-            [otherTitleButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.878 green:0.933 blue:0.992 alpha:1.000]] forState:UIControlStateHighlighted];
             otherTitleButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
             [buttonView addSubview:otherTitleButton];
         }
+        self.otherButtons = [NSArray arrayWithArray:otherButtons];
+        self.highlightedButtonBackgroundColor = [UIColor colorWithRed:0.878 green:0.933 blue:0.992 alpha:1.000];
         
         
         UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
