@@ -24,6 +24,10 @@ typedef void (^MLAlertTapButtonBlock)(MLAlertView *alertView, NSInteger buttonIn
 
 @property (nonatomic, copy) MLAlertTapButtonBlock buttonDidTappedBlock;
 
+@property (nonatomic, assign) UIColor *titleBackgroundColor;
+
+@property (nonatomic, assign) UIColor *titleForegroundColor;
+
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;

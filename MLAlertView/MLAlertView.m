@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic, strong) UIAttachmentBehavior *attachmentBehavior;
 @property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIView *topPart;
 @end
 
 @implementation MLAlertView
@@ -32,6 +34,16 @@
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+- (void) setTitleBackgroundColor:(UIColor *)titleBackgroundColor {
+    _titleBackgroundColor = titleBackgroundColor;
+    self.topPart.backgroundColor = _titleBackgroundColor;
+}
+
+- (void) setTitleForegroundColor:(UIColor *)titleForegroundColor {
+    _titleForegroundColor = titleForegroundColor;
+    self.titleLabel.textColor = _titleForegroundColor;
 }
 
 #pragma mark - Actions
@@ -99,6 +111,8 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
     self = [super init];
     if (self) {
         _delegate = delegate;
+        _titleBackgroundColor = [UIColor colorWithRed:0.063 green:0.486 blue:0.965 alpha:1.000];
+        _titleForegroundColor = [UIColor whiteColor];
         UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
         CGFloat currentWidth = 280;
@@ -125,16 +139,16 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
         self.layer.cornerRadius = 13;
         
         //Title View
-        UIView *topPart = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 40)];
-        topPart.backgroundColor = [UIColor colorWithRed:0.063 green:0.486 blue:0.965 alpha:1.000];
-        [self addSubview:topPart];
+        self.topPart = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 40)];
+        self.topPart.backgroundColor = _titleBackgroundColor;
+        [self addSubview:self.topPart];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 40)];
-        titleLabel.text = title;
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.font = [UIFont boldSystemFontOfSize:19];
-        [topPart addSubview:titleLabel];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 40)];
+        self.titleLabel.text = title;
+        self.titleLabel.textColor = _titleForegroundColor;
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+        [self.topPart addSubview:self.titleLabel];
         
         
         //Message view
