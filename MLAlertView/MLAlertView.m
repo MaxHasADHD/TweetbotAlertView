@@ -55,10 +55,22 @@
     [self.cancelButton setBackgroundImage:[self imageWithColor:_highlightedCancelButtonBackgroundColor] forState:UIControlStateHighlighted];
 }
 
+- (void) setHighlightedCancelButtonForegroundColor:(UIColor *)highlightedCancelButtonForegroundColor {
+    _highlightedCancelButtonForegroundColor = highlightedCancelButtonForegroundColor;
+    [self.cancelButton setTitleColor:highlightedCancelButtonForegroundColor forState:UIControlStateHighlighted];
+}
+
 - (void) setHighlightedButtonBackgroundColor:(UIColor *)highlightedButtonBackgroundColor {
     _highlightedButtonBackgroundColor = highlightedButtonBackgroundColor;
     for(UIButton *button in _otherButtons) {
         [button setBackgroundImage:[self imageWithColor:highlightedButtonBackgroundColor] forState:UIControlStateHighlighted];
+    }
+}
+
+- (void) setHighlightedButtonForegroundColor:(UIColor *)highlightedButtonForegroundColor {
+    _highlightedButtonForegroundColor = highlightedButtonForegroundColor;
+    for(UIButton *button in _otherButtons) {
+        [button setTitleColor:highlightedButtonForegroundColor forState:UIControlStateHighlighted];
     }
 }
 
@@ -202,7 +214,7 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
             
             [self.cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
             [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [self.cancelButton setTitleColor:[UIColor colorWithRed:0.769 green:0.000 blue:0.071 alpha:1.000] forState:UIControlStateHighlighted];
+            self.highlightedCancelButtonForegroundColor = [UIColor colorWithRed:0.769 green:0.000 blue:0.071 alpha:1.000];
             self.highlightedCancelButtonBackgroundColor = [UIColor colorWithRed:0.933 green:0.737 blue:0.745 alpha:1.000];
             self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
             [self.cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
@@ -243,12 +255,12 @@ return [self initWithTitle:title message:message delegate:nil cancelButtonTitle:
             [otherTitleButton addTarget:self action:@selector(alertButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
             [otherTitleButton setTitle:otherButtonTitles[i] forState:UIControlStateNormal];
             [otherTitleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [otherTitleButton setTitleColor:[UIColor colorWithRed:0.071 green:0.431 blue:0.965 alpha:1.000] forState:UIControlStateHighlighted];
             otherTitleButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
             [buttonView addSubview:otherTitleButton];
         }
         self.otherButtons = [NSArray arrayWithArray:otherButtons];
         self.highlightedButtonBackgroundColor = [UIColor colorWithRed:0.878 green:0.933 blue:0.992 alpha:1.000];
+        self.highlightedButtonForegroundColor = [UIColor colorWithRed:0.071 green:0.431 blue:0.965 alpha:1.000];
         
         
         UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];

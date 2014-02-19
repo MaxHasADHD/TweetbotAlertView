@@ -31,7 +31,11 @@ typedef void (^MLAlertTapButtonBlock)(MLAlertView *alertView, NSInteger buttonIn
 
 @property (nonatomic, assign) UIColor *highlightedCancelButtonBackgroundColor;
 
+@property (nonatomic, assign) UIColor *highlightedCancelButtonForegroundColor;
+
 @property (nonatomic, assign) UIColor *highlightedButtonBackgroundColor;
+
+@property (nonatomic, assign) UIColor *highlightedButtonForegroundColor;
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
 
