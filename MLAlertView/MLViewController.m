@@ -42,16 +42,17 @@
 }
 
 - (IBAction)alertUsingBlock:(id)sender {
-  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message"cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"] usingBlockWhenTapButton:^(MLAlertView *alertView, NSInteger buttonIndex) {
+  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"] usingBlockWhenTapButton:^(MLAlertView *alertView, NSInteger buttonIndex) {
     NSLog(@"tap from block - %li",(long)buttonIndex);
     [alertView dismiss];
   }];
   
   [alert show];
 }
+
 - (IBAction)alertUsingBlock2:(id)sender {
   
-  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message"cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"]];
+  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"]];
   
   alert.buttonDidTappedBlock = ^(MLAlertView *alertView, NSInteger buttonIndex) {
     NSLog(@"tap from block 2 - %li",(long)buttonIndex);

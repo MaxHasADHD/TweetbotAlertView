@@ -22,6 +22,7 @@
 		AA337382181CECBF0090A9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA337380181CECBF0090A9C8 /* InfoPlist.strings */; };
 		AA337384181CECBF0090A9C8 /* MLAlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA337383181CECBF0090A9C8 /* MLAlertViewTests.m */; };
 		AA33738F181CECDE0090A9C8 /* MLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA33738E181CECDE0090A9C8 /* MLAlertView.m */; };
+		AA411AC1192EADD40060A232 /* MLAlertViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA411AC0192EADD40060A232 /* MLAlertViewButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		AA337383181CECBF0090A9C8 /* MLAlertViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLAlertViewTests.m; sourceTree = "<group>"; };
 		AA33738D181CECDE0090A9C8 /* MLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAlertView.h; sourceTree = "<group>"; };
 		AA33738E181CECDE0090A9C8 /* MLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAlertView.m; sourceTree = "<group>"; };
+		AA411ABF192EADD40060A232 /* MLAlertViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAlertViewButton.h; sourceTree = "<group>"; };
+		AA411AC0192EADD40060A232 /* MLAlertViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAlertViewButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				AA33736E181CECBF0090A9C8 /* MLViewController.m */,
 				AA33738D181CECDE0090A9C8 /* MLAlertView.h */,
 				AA33738E181CECDE0090A9C8 /* MLAlertView.m */,
+				AA411ABF192EADD40060A232 /* MLAlertViewButton.h */,
+				AA411AC0192EADD40060A232 /* MLAlertViewButton.m */,
 				AA337370181CECBF0090A9C8 /* Images.xcassets */,
 				AA33735F181CECBF0090A9C8 /* Supporting Files */,
 			);
@@ -202,7 +207,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ML;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Maximilian Litteral";
 				TargetAttributes = {
 					AA337375181CECBF0090A9C8 = {
@@ -258,6 +263,7 @@
 				AA33738F181CECDE0090A9C8 /* MLAlertView.m in Sources */,
 				AA337365181CECBF0090A9C8 /* main.m in Sources */,
 				AA33736F181CECBF0090A9C8 /* MLViewController.m in Sources */,
+				AA411AC1192EADD40060A232 /* MLAlertViewButton.m in Sources */,
 				AA337369181CECBF0090A9C8 /* MLAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +318,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -351,7 +356,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -409,7 +413,6 @@
 		AA33738B181CECBF0090A9C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MLAlertView.app/MLAlertView";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -432,7 +435,6 @@
 		AA33738C181CECBF0090A9C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MLAlertView.app/MLAlertView";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
