@@ -245,18 +245,12 @@
             else {
                 // Cancel button + multiple other buttons
                 self.cancelButton.frame = CGRectMake(0, extraHeight-41+0.5, kAlertwidth, kButtonHeight);
-                if ([otherButtonTitles count] == 0) {
-                    self.highlightedCancelButtonBackgroundColor = kBlueColor;
-                    self.highlightedCancelButtonForegroundColor = kBlueTitleColor;
-                }
-                else {
-                    self.highlightedCancelButtonBackgroundColor = kRedColor;
-                    self.highlightedCancelButtonForegroundColor = kRedTitleColor;
-                }
             }
             
             [self.cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
             [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            self.highlightedCancelButtonBackgroundColor = kRedColor;
+            self.highlightedCancelButtonForegroundColor = kRedTitleColor;
             self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
             [self.cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
             self.cancelButton.tag = 0;
@@ -303,7 +297,6 @@
             [buttonView addSubview:otherTitleButton];
         }
         self.otherButtons = [NSArray arrayWithArray:otherButtons];
-        
         self.highlightedButtonBackgroundColor = kBlueColor;
         self.highlightedButtonForegroundColor = kBlueTitleColor;
         
