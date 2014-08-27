@@ -22,7 +22,7 @@
 }
 
 - (IBAction)mlalert2Buttons {
-  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open"]];
+  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Travel Reward" message:@"Know exactly when you can travel for free! Simply take 8 paid journeys from Monday-Sunday with an Opal card and enjoy free travel for the rest of the week, exclusing the airport station access fee." delegate:self cancelButtonTitle:@"Got it!" otherButtonTitles:nil];
   [alert show];
 }
 

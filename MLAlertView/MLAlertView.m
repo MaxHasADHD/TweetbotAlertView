@@ -10,7 +10,13 @@
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
-#define buttonHeight 41
+#define kAlertwidth 280
+#define kButtonHeight 41
+
+#define kRedColor [UIColor colorWithRed:0.933 green:0.737 blue:0.745 alpha:1.000]
+#define kRedTitleColor [UIColor colorWithRed:0.769 green:0.000 blue:0.071 alpha:1.000]
+#define kBlueColor [UIColor colorWithRed:0.878 green:0.933 blue:0.992 alpha:1.000]
+#define kBlueTitleColor [UIColor colorWithRed:0.071 green:0.431 blue:0.965 alpha:1.000]
 
 @interface MLAlertView ()
 @property (nonatomic, strong) UIDynamicAnimator *animator;
@@ -127,6 +133,28 @@
     }
 }
 
+#pragma mark - Setup
+
+- (void)setupTitleViewWithTitle:(NSString *)title {
+    self.topPart = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kAlertwidth, 41.5)];
+    self.titleBackgroundColor = [UIColor colorWithRed:0.063 green:0.486 blue:0.965 alpha:1.000];;
+    [_alertView addSubview:self.topPart];
+    
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kAlertwidth, 40)];
+    self.titleLabel.text = title;
+    self.titleForegroundColor = [UIColor whiteColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+    [self.topPart addSubview:self.titleLabel];
+}
+
+- (CALayer *)lineAt:(CGRect)rect {
+    CALayer *border = [CALayer layer];
+    border.frame = rect;
+    border.backgroundColor = [UIColor colorWithRed:0.824 green:0.827 blue:0.831 alpha:1.000].CGColor;
+    return border;
+}
+
 #pragma mark - initializers
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles {
@@ -141,79 +169,63 @@
     return self;
 }
 
-- (CALayer *)lineAt:(CGRect)rect {
-    CALayer *border = [CALayer layer];
-    border.frame = rect;
-    border.backgroundColor = [UIColor colorWithRed:0.824 green:0.827 blue:0.831 alpha:1.000].CGColor;
-    return border;
-}
-
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles {
     self = [super init];
     if (self) {
         _delegate = delegate;
+        
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        self.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+        self.backgroundColor = [UIColor clearColor];
+        
         UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
-        CGFloat currentWidth = 280;
         CGFloat extraHeight = 0;
         if ((cancelButtonTitle && [otherButtonTitles count] <= 1) ||
             ([otherButtonTitles count] < 2 && !cancelButtonTitle)) {
             // Cancel button and 1 other button, or 1/2 other buttons and no cancel button
-            extraHeight = buttonHeight;
+            extraHeight = kButtonHeight;
         }
         else if (cancelButtonTitle && [otherButtonTitles count] > 1) {
-            extraHeight = buttonHeight + [otherButtonTitles count]*buttonHeight;
+            extraHeight = kButtonHeight + [otherButtonTitles count]*kButtonHeight;
         }
         else {
             NSLog(@"failed both");
         }
         
-        CGSize maximumSize = CGSizeMake(currentWidth, CGFLOAT_MAX);
-        CGRect boundingRect = [message boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{ NSFontAttributeName : font} context:nil];
+        CGSize maximumSize = CGSizeMake(270, CGFLOAT_MAX);
+        CGRect boundingRect = [message boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : font} context:nil];
         CGFloat height = boundingRect.size.height + 16.0+40+extraHeight;
-
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
-        _alertView = [[UIView alloc] initWithFrame:CGRectMake(20, (screenHeight-height)/2, 280, height)];
+        _alertView = [[UIView alloc] initWithFrame:CGRectMake(20, (screenHeight-height)/2, kAlertwidth, height)];
         _alertView.backgroundColor = [UIColor whiteColor];
         _alertView.layer.masksToBounds = YES;
         _alertView.layer.cornerRadius = 13;
         [self addSubview:_alertView];
         
-        self.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-        self.backgroundColor = [UIColor clearColor];
+        [self setupTitleViewWithTitle:title];
         
-        // Title View
-        self.topPart = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 41.5)];
-        self.titleBackgroundColor = [UIColor colorWithRed:0.063 green:0.486 blue:0.965 alpha:1.000];;
-        [_alertView addSubview:self.topPart];
-        
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 40)];
-        self.titleLabel.text = title;
-        self.titleForegroundColor = [UIColor whiteColor];
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
-        [self.topPart addSubview:self.titleLabel];
-        
-        // Message view
         UITextView *messageView = [[UITextView alloc] init];
         CGFloat newLineHeight = boundingRect.size.height + 16.0;
-        messageView.frame = CGRectMake(0, CGRectGetHeight(self.topPart.frame), 280, newLineHeight);
+        messageView.frame = CGRectMake(0, CGRectGetHeight(self.topPart.frame), kAlertwidth, newLineHeight);
         messageView.text = message;
         messageView.font = font;
         messageView.editable = NO;
-        messageView.dataDetectorTypes = UIDataDetectorTypeAll;
+        messageView.dataDetectorTypes = UIDataDetectorTypeNone;
         messageView.userInteractionEnabled = NO;
         messageView.textAlignment = NSTextAlignmentCenter;
         [_alertView addSubview:messageView];
         
+        
         // Buttons
-        UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, height-extraHeight, 280, extraHeight)];
+        UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, height-extraHeight, kAlertwidth, extraHeight)];
         
         CALayer *horizontalBorder = [self lineAt:CGRectMake(0, 0, buttonView.frame.size.width, 0.5)];
         [buttonView.layer addSublayer:horizontalBorder];
         
+        // Adds border between 2 buttons
         if ((cancelButtonTitle && [otherButtonTitles count] == 1) ||
             ([otherButtonTitles count] <= 2 && !cancelButtonTitle)) {
             CALayer *centerBorder = [CALayer layer];
@@ -223,54 +235,63 @@
         }
         [_alertView addSubview:buttonView];
         
+        // Setup cancel button
         if (cancelButtonTitle) {
             self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
             if ([otherButtonTitles count] == 1) {
-                // Other buttons
-                self.cancelButton.frame = CGRectMake(0, 0, 140, buttonHeight);
+                // Cancel button & 1 other button
+                self.cancelButton.frame = CGRectMake(0, 0, 140, kButtonHeight);
             }
             else {
-                // Only cancel button
-                self.cancelButton.frame = CGRectMake(0, CGRectGetHeight(buttonView.frame)-41, 280, buttonHeight);
+                // Cancel button + multiple other buttons
+                self.cancelButton.frame = CGRectMake(0, extraHeight-41+0.5, kAlertwidth, kButtonHeight);
+                if ([otherButtonTitles count] == 0) {
+                    self.highlightedCancelButtonBackgroundColor = kBlueColor;
+                    self.highlightedCancelButtonForegroundColor = kBlueTitleColor;
+                }
+                else {
+                    self.highlightedCancelButtonBackgroundColor = kRedColor;
+                    self.highlightedCancelButtonForegroundColor = kRedTitleColor;
+                }
             }
             
             [self.cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
             [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            self.highlightedCancelButtonForegroundColor = [UIColor colorWithRed:0.769 green:0.000 blue:0.071 alpha:1.000];
-            self.highlightedCancelButtonBackgroundColor = [UIColor colorWithRed:0.933 green:0.737 blue:0.745 alpha:1.000];
             self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
             [self.cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
             self.cancelButton.tag = 0;
             [buttonView addSubview:self.cancelButton];
         }
         
-        NSMutableArray *otherButtons = [[NSMutableArray alloc] initWithCapacity:[otherButtonTitles count]];
+        // Setup other buttons
+        NSMutableArray *otherButtons = [[NSMutableArray alloc] init];
         for (int i=0; i<[otherButtonTitles count]; i++) {
             UIButton *otherTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [otherButtons addObject:otherTitleButton];
             
             if ([otherButtonTitles count] == 1 && !cancelButtonTitle) {
                 //1 other button and no cancel button
-                otherTitleButton.frame = CGRectMake(0, 0, 280, buttonHeight);
+                otherTitleButton.frame = CGRectMake(0, 0, kAlertwidth, kButtonHeight);
                 otherTitleButton.tag = 0;
             }
             else if (([otherButtonTitles count] == 2 && !cancelButtonTitle) ||
                      ([otherButtonTitles count] == 1 && cancelButtonTitle)) {
                 // 2 other buttons, no cancel or 1 other button and cancel
                 otherTitleButton.tag = i+1;
-                otherTitleButton.frame = CGRectMake(140.5, 0, 139.5, buttonHeight);
+                otherTitleButton.frame = CGRectMake(140.5, 0, 139.5, kButtonHeight);
             }
             else if ([otherButtonTitles count] >= 2) {
                 if (cancelButtonTitle) {
-                    otherTitleButton.frame = CGRectMake(0, (i*buttonHeight)+0.5, 280, buttonHeight);
+                    otherTitleButton.frame = CGRectMake(0, (i*kButtonHeight)+0.5, kAlertwidth, kButtonHeight);
                     otherTitleButton.tag = i+1;
                 }
                 else {
-                    otherTitleButton.frame = CGRectMake(0, i*buttonHeight, 280, buttonHeight);
+                    otherTitleButton.frame = CGRectMake(0, i*kButtonHeight, kAlertwidth, kButtonHeight);
                     otherTitleButton.tag = i;
                 }
                 CALayer *horizontalBorder = [CALayer layer];
-                horizontalBorder.frame = CGRectMake(0.0f, otherTitleButton.frame.origin.y+39.5, buttonView.frame.size.width, 0.5f);
+                CGFloat borderY = CGRectGetMaxY(otherTitleButton.frame)-0.5;
+                horizontalBorder.frame = CGRectMake(0.0f, borderY, buttonView.frame.size.width, 0.5f);
                 horizontalBorder.backgroundColor = [UIColor colorWithRed:0.824 green:0.827 blue:0.831 alpha:1.000].CGColor;
                 [buttonView.layer addSublayer:horizontalBorder];
             }
@@ -282,16 +303,18 @@
             [buttonView addSubview:otherTitleButton];
         }
         self.otherButtons = [NSArray arrayWithArray:otherButtons];
-        self.highlightedButtonBackgroundColor = [UIColor colorWithRed:0.878 green:0.933 blue:0.992 alpha:1.000];
-        self.highlightedButtonForegroundColor = [UIColor colorWithRed:0.071 green:0.431 blue:0.965 alpha:1.000];
         
+        self.highlightedButtonBackgroundColor = kBlueColor;
+        self.highlightedButtonForegroundColor = kBlueTitleColor;
+        
+        // Motion effects
         UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-        horizontalMotionEffect.minimumRelativeValue = @(-20);
-        horizontalMotionEffect.maximumRelativeValue = @(20);
+        horizontalMotionEffect.minimumRelativeValue = @(-10);
+        horizontalMotionEffect.maximumRelativeValue = @(10);
         
         UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-        verticalMotionEffect.minimumRelativeValue = @(-20);
-        verticalMotionEffect.maximumRelativeValue = @(20);
+        verticalMotionEffect.minimumRelativeValue = @(-10);
+        verticalMotionEffect.maximumRelativeValue = @(10);
         
         UIMotionEffectGroup *group = [UIMotionEffectGroup new];
         group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
