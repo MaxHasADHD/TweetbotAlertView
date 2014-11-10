@@ -199,7 +199,7 @@
         CGRect boundingRect = [message boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : font} context:nil];
         CGFloat height = boundingRect.size.height + 16.0+40+extraHeight;
         
-        _alertView = [[UIView alloc] initWithFrame:CGRectMake(20, (screenHeight-height)/2, kAlertwidth, height)];
+        _alertView = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-kAlertwidth)/2, (screenHeight-height)/2, kAlertwidth, height)];
         _alertView.backgroundColor = [UIColor whiteColor];
         _alertView.layer.masksToBounds = YES;
         _alertView.layer.cornerRadius = 13;
