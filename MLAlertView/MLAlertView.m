@@ -83,6 +83,38 @@
     }
 }
 
+#pragma mark - Getters
+
+- (NSInteger) cancelButtonIndex {
+    if (self.cancelButton) {
+        return 0;
+    }
+    return -1;
+}
+
+- (NSString *) buttonTitleAtIndex:(NSInteger)index {
+    if (self.cancelButton) {
+        if (index == self.cancelButtonIndex) {
+            return [self.cancelButton titleForState:UIControlStateNormal];
+        }
+
+        NSAssert((index > 0 && index <= self.otherButtons.count),
+                 @"Index out of bounds: trying to access index %ld in array of %ld elements",
+                 (unsigned long)index, (unsigned long)self.otherButtons.count + 1);
+        if (index > 0 && index <= self.otherButtons.count) {
+            return [self.otherButtons[index - 1] titleForState:UIControlStateNormal];
+        }
+    }
+
+    NSAssert((index >= 0 && index < self.otherButtons.count),
+             @"Index out of bounds: trying to access index %ld in array of %ld elements",
+             (unsigned long)index, (unsigned long)self.otherButtons.count);
+    if (index >= 0 && index < self.otherButtons.count) {
+        return [self.otherButtons[index] titleForState:UIControlStateNormal];
+    }
+    return nil;
+}
+
 #pragma mark - Actions
 
 - (void)show {
@@ -126,11 +158,13 @@
 }
 
 - (void)alertButtonWasTapped:(UIButton *)button {
-    if (self.delegate != nil) {
-        [self.delegate alertView:self clickedButtonAtIndex:button.tag];
-        
-    } else if (self.buttonDidTappedBlock != nil) {
-        self.buttonDidTappedBlock(self, button.tag);
+    NSInteger index = (button == self.cancelButton ? self.cancelButtonIndex : button.tag);
+
+    if (self.buttonDidTappedBlock != nil) {
+        self.buttonDidTappedBlock(self, index);
+    }
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]) {
+        [self.delegate alertView:self clickedButtonAtIndex:index];
     }
 }
 
@@ -191,6 +225,12 @@
         }
         else if (cancelButtonTitle && [otherButtonTitles count] > 1) {
             extraHeight = kButtonHeight + [otherButtonTitles count]*kButtonHeight;
+        }
+        else if (!cancelButtonTitle && [otherButtonTitles count] > 2) {
+            extraHeight = [otherButtonTitles count]*kButtonHeight;
+        }
+        else if (!cancelButtonTitle && [otherButtonTitles count] > 0) {
+            extraHeight = kButtonHeight;
         }
         else {
             NSLog(@"failed both");
@@ -253,6 +293,7 @@
             self.highlightedCancelButtonBackgroundColor = kRedColor;
             self.highlightedCancelButtonForegroundColor = kRedTitleColor;
             self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+            [self.cancelButton addTarget:self action:@selector(alertButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self.cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
             self.cancelButton.tag = 0;
             [buttonView addSubview:self.cancelButton];
@@ -272,8 +313,9 @@
             else if (([otherButtonTitles count] == 2 && !cancelButtonTitle) ||
                      ([otherButtonTitles count] == 1 && cancelButtonTitle)) {
                 // 2 other buttons, no cancel or 1 other button and cancel
-                otherTitleButton.tag = i+1;
-                otherTitleButton.frame = CGRectMake(140.5, 0, 139.5, kButtonHeight);
+                NSInteger index = (cancelButtonTitle ? 1 : i);
+                otherTitleButton.tag = index;
+                otherTitleButton.frame = CGRectMake(index * 140.5, 0, 139.5, kButtonHeight);;
             }
             else if ([otherButtonTitles count] >= 2) {
                 if (cancelButtonTitle) {
