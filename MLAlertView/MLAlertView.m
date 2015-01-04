@@ -105,11 +105,11 @@
     
     CGPoint squareCenterPoint = CGPointMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.frame));
     UIOffset attachmentPoint = UIOffsetMake(CGRectGetMinX(self.frame), CGRectGetMaxY(self.frame));
-    UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self offsetFromCenter:attachmentPoint attachedToAnchor:squareCenterPoint];
+    UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self.alertView offsetFromCenter:attachmentPoint attachedToAnchor:squareCenterPoint];
     [animator addBehavior:attachmentBehavior];
     self.attachmentBehavior = attachmentBehavior;
     
-    UIGravityBehavior *gravityBeahvior = [[UIGravityBehavior alloc] initWithItems:@[self]];
+    UIGravityBehavior *gravityBeahvior = [[UIGravityBehavior alloc] initWithItems:@[self.alertView]];
     gravityBeahvior.magnitude = 4;
     gravityBeahvior.angle = DEGREES_TO_RADIANS(100);
     [animator addBehavior:gravityBeahvior];
@@ -119,6 +119,7 @@
     [self performSelector:@selector(removeFromSuperview) withObject:self afterDelay:0.7];
     
     [UIView animateWithDuration:0.3 animations:^{
+        self.backgroundColor = [UIColor clearColor];
         self.window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     }];
     
@@ -176,10 +177,10 @@
         
         CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        
+
         self.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-        self.backgroundColor = [UIColor clearColor];
-        
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+
         UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
         CGFloat extraHeight = 0;
