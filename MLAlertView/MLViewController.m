@@ -17,7 +17,7 @@
 @implementation MLViewController
 
 - (void)alertView:(MLAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  NSLog(@"%li",(long)buttonIndex);
+  NSLog(@"%li - %@",(long)buttonIndex, [alertView buttonTitleAtIndex:buttonIndex]);
   [alertView dismiss];
 }
 
@@ -43,7 +43,7 @@
 
 - (IBAction)alertUsingBlock:(id)sender {
   MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"] usingBlockWhenTapButton:^(MLAlertView *alertView, NSInteger buttonIndex) {
-    NSLog(@"tap from block - %li",(long)buttonIndex);
+    NSLog(@"tap from block - %li - %@",(long)buttonIndex, [alertView buttonTitleAtIndex:buttonIndex]);
     [alertView dismiss];
   }];
   
@@ -55,7 +55,7 @@
   MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"]];
   
   alert.buttonDidTappedBlock = ^(MLAlertView *alertView, NSInteger buttonIndex) {
-    NSLog(@"tap from block 2 - %li",(long)buttonIndex);
+    NSLog(@"tap from block 2 - %li - %@",(long)buttonIndex, [alertView buttonTitleAtIndex:buttonIndex]);
     [alertView dismiss];
   };
   

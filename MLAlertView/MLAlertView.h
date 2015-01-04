@@ -24,6 +24,7 @@ typedef void (^MLAlertTapButtonBlock)(MLAlertView *alertView, NSInteger buttonIn
 
 @property (nonatomic, copy) MLAlertTapButtonBlock buttonDidTappedBlock;
 
+@property (nonatomic, readonly) NSInteger cancelButtonIndex;
 
 @property (nonatomic, assign) UIColor *titleBackgroundColor;
 
@@ -37,12 +38,13 @@ typedef void (^MLAlertTapButtonBlock)(MLAlertView *alertView, NSInteger buttonIn
 
 @property (nonatomic, assign) UIColor *highlightedButtonForegroundColor;
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id<MLAlertViewDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles usingBlockWhenTapButton:(MLAlertTapButtonBlock)tapButtonBlock;
 
+- (NSString *)buttonTitleAtIndex:(NSInteger)index;
 
 - (void)show;
 

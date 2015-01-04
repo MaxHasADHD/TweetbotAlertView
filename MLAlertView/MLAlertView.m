@@ -83,6 +83,38 @@
     }
 }
 
+#pragma mark - Getters
+
+- (NSInteger) cancelButtonIndex {
+    if (self.cancelButton) {
+        return 0;
+    }
+    return -1;
+}
+
+- (NSString *) buttonTitleAtIndex:(NSInteger)index {
+    if (self.cancelButton) {
+        if (index == self.cancelButtonIndex) {
+            return [self.cancelButton titleForState:UIControlStateNormal];
+        }
+
+        NSAssert((index > 0 && index <= self.otherButtons.count),
+                 @"Index out of bounds: trying to access index %ld in array of %ld elements",
+                 (unsigned long)index, (unsigned long)self.otherButtons.count + 1);
+        if (index > 0 && index <= self.otherButtons.count) {
+            return [self.otherButtons[index - 1] titleForState:UIControlStateNormal];
+        }
+    }
+
+    NSAssert((index >= 0 && index < self.otherButtons.count),
+             @"Index out of bounds: trying to access index %ld in array of %ld elements",
+             (unsigned long)index, (unsigned long)self.otherButtons.count);
+    if (index >= 0 && index < self.otherButtons.count) {
+        return [self.otherButtons[index] titleForState:UIControlStateNormal];
+    }
+    return nil;
+}
+
 #pragma mark - Actions
 
 - (void)show {
@@ -105,11 +137,11 @@
     
     CGPoint squareCenterPoint = CGPointMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.frame));
     UIOffset attachmentPoint = UIOffsetMake(CGRectGetMinX(self.frame), CGRectGetMaxY(self.frame));
-    UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self offsetFromCenter:attachmentPoint attachedToAnchor:squareCenterPoint];
+    UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self.alertView offsetFromCenter:attachmentPoint attachedToAnchor:squareCenterPoint];
     [animator addBehavior:attachmentBehavior];
     self.attachmentBehavior = attachmentBehavior;
     
-    UIGravityBehavior *gravityBeahvior = [[UIGravityBehavior alloc] initWithItems:@[self]];
+    UIGravityBehavior *gravityBeahvior = [[UIGravityBehavior alloc] initWithItems:@[self.alertView]];
     gravityBeahvior.magnitude = 4;
     gravityBeahvior.angle = DEGREES_TO_RADIANS(100);
     [animator addBehavior:gravityBeahvior];
@@ -119,17 +151,20 @@
     [self performSelector:@selector(removeFromSuperview) withObject:self afterDelay:0.7];
     
     [UIView animateWithDuration:0.3 animations:^{
+        self.backgroundColor = [UIColor clearColor];
         self.window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     }];
     
 }
 
 - (void)alertButtonWasTapped:(UIButton *)button {
-    if (self.delegate != nil) {
-        [self.delegate alertView:self clickedButtonAtIndex:button.tag];
-        
-    } else if (self.buttonDidTappedBlock != nil) {
-        self.buttonDidTappedBlock(self, button.tag);
+    NSInteger index = (button == self.cancelButton ? self.cancelButtonIndex : button.tag);
+
+    if (self.buttonDidTappedBlock != nil) {
+        self.buttonDidTappedBlock(self, index);
+    }
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]) {
+        [self.delegate alertView:self clickedButtonAtIndex:index];
     }
 }
 
@@ -176,10 +211,10 @@
         
         CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        
+
         self.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-        self.backgroundColor = [UIColor clearColor];
-        
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+
         UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
         CGFloat extraHeight = 0;
@@ -191,6 +226,12 @@
         else if (cancelButtonTitle && [otherButtonTitles count] > 1) {
             extraHeight = kButtonHeight + [otherButtonTitles count]*kButtonHeight;
         }
+        else if (!cancelButtonTitle && [otherButtonTitles count] > 2) {
+            extraHeight = [otherButtonTitles count]*kButtonHeight;
+        }
+        else if (!cancelButtonTitle && [otherButtonTitles count] > 0) {
+            extraHeight = kButtonHeight;
+        }
         else {
             NSLog(@"failed both");
         }
@@ -199,7 +240,7 @@
         CGRect boundingRect = [message boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : font} context:nil];
         CGFloat height = boundingRect.size.height + 16.0+40+extraHeight;
         
-        _alertView = [[UIView alloc] initWithFrame:CGRectMake(20, (screenHeight-height)/2, kAlertwidth, height)];
+        _alertView = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-kAlertwidth)/2, (screenHeight-height)/2, kAlertwidth, height)];
         _alertView.backgroundColor = [UIColor whiteColor];
         _alertView.layer.masksToBounds = YES;
         _alertView.layer.cornerRadius = 13;
@@ -252,6 +293,7 @@
             self.highlightedCancelButtonBackgroundColor = kRedColor;
             self.highlightedCancelButtonForegroundColor = kRedTitleColor;
             self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+            [self.cancelButton addTarget:self action:@selector(alertButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self.cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
             self.cancelButton.tag = 0;
             [buttonView addSubview:self.cancelButton];
@@ -271,8 +313,9 @@
             else if (([otherButtonTitles count] == 2 && !cancelButtonTitle) ||
                      ([otherButtonTitles count] == 1 && cancelButtonTitle)) {
                 // 2 other buttons, no cancel or 1 other button and cancel
-                otherTitleButton.tag = i+1;
-                otherTitleButton.frame = CGRectMake(140.5, 0, 139.5, kButtonHeight);
+                NSInteger index = (cancelButtonTitle ? 1 : i);
+                otherTitleButton.tag = index;
+                otherTitleButton.frame = CGRectMake(index * 140.5, 0, 139.5, kButtonHeight);;
             }
             else if ([otherButtonTitles count] >= 2) {
                 if (cancelButtonTitle) {
