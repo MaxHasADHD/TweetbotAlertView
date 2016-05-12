@@ -11,36 +11,36 @@ Video of alert: http://cl.ly/S9hY
 
 ######Objective-C
 ```
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        ...
-    }];
-    [alertController addAction:cancelAction];
-    
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        ...
-    }];
-    [alertController addAction:action];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+TweetbotAlertController *alertController = [[TweetbotAlertController alloc] initWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
+
+TweetbotAlertAction *action = [[TweetbotAlertAction alloc] initWithTitle:@"Cancel" style:TweetbotAlertActionStyleCancel handler:^(TweetbotAlertAction * _Nonnull action) {
+    NSLog(@"Tapped cancel action");
+}];
+[alertController addAction:action];
+
+TweetbotAlertAction *action2 = [[TweetbotAlertAction alloc] initWithTitle:@"Default" style:TweetbotAlertActionStyleDefault handler:^(TweetbotAlertAction * _Nonnull action) {
+    NSLog(@"Tapped default action");
+}];
+[alertController addAction:action2];
+
+[self presentViewController:alertController animated:NO completion:nil];
 ```
 
 ######Swift
 ```
 let alertController = TweetbotAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
         
-        let cancelAction = TweetbotAlertAction(title: "Cancel", style: .Cancel) { (action) in
-            ...
-        }
-        alertController.addAction(cancelAction)
-        
-        let defaultAction = TweetbotAlertAction(title: "Default", style: .Default) { (action) in
-            ...
-        }
-        alertController.addAction(defaultAction)
-        
-        self.presentViewController(alertController, animated: false, completion: nil)
+let cancelAction = TweetbotAlertAction(title: "Cancel", style: .Cancel) { (action) in
+    ...
+}
+alertController.addAction(cancelAction)
+
+let defaultAction = TweetbotAlertAction(title: "Default", style: .Default) { (action) in
+    ...
+}
+alertController.addAction(defaultAction)
+
+self.presentViewController(alertController, animated: false, completion: nil)
 ```
 
 It is important to have `animated:` set to `false` so it animates correctly, although I am hoping to change the way it is presented to use a custom transition coordinator so this won't be an issue.
