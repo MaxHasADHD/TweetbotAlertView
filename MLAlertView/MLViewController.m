@@ -8,71 +8,93 @@
 
 #import "MLViewController.h"
 
-#import "MLAlertView.h"
-
-@interface MLViewController () <MLAlertViewDelegate>
-
-@end
+#import "TweetbotAlertController-Swift.h"
 
 @implementation MLViewController
 
-- (void)alertView:(MLAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  NSLog(@"%li",(long)buttonIndex);
-  [alertView dismiss];
-}
-
 - (IBAction)mlalert2Buttons {
-  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-  [alert show];
+    TweetbotAlertController *alertController = [[TweetbotAlertController alloc] initWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
+    
+    TweetbotAlertAction *action = [[TweetbotAlertAction alloc] initWithTitle:@"Cancel" style:TweetbotAlertActionStyleCancel handler:^(TweetbotAlertAction * _Nonnull action) {
+        NSLog(@"Tapped cancel action");
+    }];
+    [alertController addAction:action];
+    
+    TweetbotAlertAction *action2 = [[TweetbotAlertAction alloc] initWithTitle:@"Default" style:TweetbotAlertActionStyleDefault handler:^(TweetbotAlertAction * _Nonnull action) {
+        NSLog(@"Tapped default action");
+    }];
+    [alertController addAction:action2];
+    
+    [self presentViewController:alertController animated:NO completion:nil];
 }
 
 - (IBAction)mlalert3Buttons {
-  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"]];
-  [alert show];
+    TweetbotAlertController *alertController = [[TweetbotAlertController alloc] initWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
+    
+    TweetbotAlertAction *cancelAction = [[TweetbotAlertAction alloc] initWithTitle:@"Cancel" style:TweetbotAlertActionStyleCancel handler:^(TweetbotAlertAction * _Nonnull action) {
+        NSLog(@"Tapped cancel action");
+    }];
+    [alertController addAction:cancelAction];
+    
+    TweetbotAlertAction *action = [[TweetbotAlertAction alloc] initWithTitle:@"Default" style:TweetbotAlertActionStyleDefault handler:^(TweetbotAlertAction * _Nonnull action) {
+        NSLog(@"Tapped default action");
+    }];
+    [alertController addAction:action];
+    
+    TweetbotAlertAction *action2 = [[TweetbotAlertAction alloc] initWithTitle:@"Default 2" style:TweetbotAlertActionStyleDefault handler:^(TweetbotAlertAction * _Nonnull action) {
+        NSLog(@"Tapped default action 2");
+    }];
+    [alertController addAction:action2];
+    
+    [self presentViewController:alertController animated:NO completion:nil];
 }
 
 - (IBAction)alert2Buttons {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Open", nil];
-  [alert show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Tapped cancel action");
+    }];
+    [alertController addAction:cancelAction];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Tapped default action");
+    }];
+    [alertController addAction:action];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)alert3Buttons {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Title" message:@"Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Open",@"Testing", nil];
-  [alert show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Tapped cancel action");
+    }];
+    [alertController addAction:cancelAction];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Tapped default action");
+    }];
+    [alertController addAction:action];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"Destructive" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Tapped destructive action");
+    }];
+    [alertController addAction:action2];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (IBAction)alertUsingBlock:(id)sender {
-  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"] usingBlockWhenTapButton:^(MLAlertView *alertView, NSInteger buttonIndex) {
-    NSLog(@"tap from block - %li",(long)buttonIndex);
-    [alertView dismiss];
-  }];
-  
-  [alert show];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
-- (IBAction)alertUsingBlock2:(id)sender {
-  
-  MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Title" message:@"Message" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Open",@"Testing"]];
-  
-  alert.buttonDidTappedBlock = ^(MLAlertView *alertView, NSInteger buttonIndex) {
-    NSLog(@"tap from block 2 - %li",(long)buttonIndex);
-    [alertView dismiss];
-  };
-  
-  [alert show];
-}
-
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-  
-}
-
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

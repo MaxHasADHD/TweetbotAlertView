@@ -1,4 +1,4 @@
-## MLAlertView
+## TweetbotAlertView
 
 Tweetbot 3 alert view style and animation
 
@@ -7,12 +7,50 @@ Tweetbot 3 alert view style and animation
 
 Video of alert: http://cl.ly/S9hY
 
+###Usage
+
+######Objective-C
+```
+UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        ...
+    }];
+    [alertController addAction:cancelAction];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        ...
+    }];
+    [alertController addAction:action];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+```
+
+######Swift
+```
+let alertController = TweetbotAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
+        
+        let cancelAction = TweetbotAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            ...
+        }
+        alertController.addAction(cancelAction)
+        
+        let defaultAction = TweetbotAlertAction(title: "Default", style: .Default) { (action) in
+            ...
+        }
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: false, completion: nil)
+```
+
+It is important to have `animated:` set to `false` so it animates correctly, although I am hoping to change the way it is presented to use a custom transition coordinator so this won't be an issue.
+
 ## License
 
 <pre>
 The MIT License (MIT)
 
-Copyright (c) 2013 Maximilian Litteral
+Copyright (c) 2016 Maximilian Litteral
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

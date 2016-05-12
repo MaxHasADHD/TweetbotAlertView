@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7C23B311CE397D7007666E6 /* TweetbotAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C23B301CE397D7007666E6 /* TweetbotAlertView.swift */; };
+		A7C23B331CE39953007666E6 /* TweetbotAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C23B321CE39953007666E6 /* TweetbotAlertController.swift */; };
+		A7C23B351CE399C0007666E6 /* TweetbotAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C23B341CE399C0007666E6 /* TweetbotAlertAction.swift */; };
+		A7C23B371CE3BBA3007666E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C23B361CE3BBA3007666E6 /* LaunchScreen.storyboard */; };
 		AA337359181CECBF0090A9C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA337358181CECBF0090A9C8 /* Foundation.framework */; };
 		AA33735B181CECBF0090A9C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA33735A181CECBF0090A9C8 /* CoreGraphics.framework */; };
 		AA33735D181CECBF0090A9C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA33735C181CECBF0090A9C8 /* UIKit.framework */; };
@@ -21,8 +25,6 @@
 		AA33737A181CECBF0090A9C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA33735C181CECBF0090A9C8 /* UIKit.framework */; };
 		AA337382181CECBF0090A9C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA337380181CECBF0090A9C8 /* InfoPlist.strings */; };
 		AA337384181CECBF0090A9C8 /* MLAlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA337383181CECBF0090A9C8 /* MLAlertViewTests.m */; };
-		AA33738F181CECDE0090A9C8 /* MLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA33738E181CECDE0090A9C8 /* MLAlertView.m */; };
-		AA411AC1192EADD40060A232 /* MLAlertViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA411AC0192EADD40060A232 /* MLAlertViewButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,29 +38,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AA337355181CECBF0090A9C8 /* MLAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7C23B2F1CE397D6007666E6 /* TweetbotAlertController-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TweetbotAlertController-Bridging-Header.h"; sourceTree = "<group>"; };
+		A7C23B301CE397D7007666E6 /* TweetbotAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetbotAlertView.swift; path = ../Source/TweetbotAlertView.swift; sourceTree = "<group>"; };
+		A7C23B321CE39953007666E6 /* TweetbotAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetbotAlertController.swift; path = ../Source/TweetbotAlertController.swift; sourceTree = "<group>"; };
+		A7C23B341CE399C0007666E6 /* TweetbotAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetbotAlertAction.swift; path = ../Source/TweetbotAlertAction.swift; sourceTree = "<group>"; };
+		A7C23B361CE3BBA3007666E6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AA337355181CECBF0090A9C8 /* TweetbotAlertController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TweetbotAlertController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA337358181CECBF0090A9C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA33735A181CECBF0090A9C8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AA33735C181CECBF0090A9C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		AA337360181CECBF0090A9C8 /* MLAlertView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MLAlertView-Info.plist"; sourceTree = "<group>"; };
+		AA337360181CECBF0090A9C8 /* TweetbotAlertController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TweetbotAlertController-Info.plist"; sourceTree = "<group>"; };
 		AA337362181CECBF0090A9C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA337364181CECBF0090A9C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AA337366181CECBF0090A9C8 /* MLAlertView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MLAlertView-Prefix.pch"; sourceTree = "<group>"; };
+		AA337366181CECBF0090A9C8 /* TweetbotAlertController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TweetbotAlertController-Prefix.pch"; sourceTree = "<group>"; };
 		AA337367181CECBF0090A9C8 /* MLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLAppDelegate.h; sourceTree = "<group>"; };
 		AA337368181CECBF0090A9C8 /* MLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLAppDelegate.m; sourceTree = "<group>"; };
 		AA33736B181CECBF0090A9C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA33736D181CECBF0090A9C8 /* MLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLViewController.h; sourceTree = "<group>"; };
 		AA33736E181CECBF0090A9C8 /* MLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLViewController.m; sourceTree = "<group>"; };
 		AA337370181CECBF0090A9C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AA337376181CECBF0090A9C8 /* MLAlertViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLAlertViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA337376181CECBF0090A9C8 /* TweetbotAlertController.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweetbotAlertController.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA337377181CECBF0090A9C8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		AA33737F181CECBF0090A9C8 /* MLAlertViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MLAlertViewTests-Info.plist"; sourceTree = "<group>"; };
+		AA33737F181CECBF0090A9C8 /* TweetbotAlertControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TweetbotAlertControllerTests-Info.plist"; sourceTree = "<group>"; };
 		AA337381181CECBF0090A9C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA337383181CECBF0090A9C8 /* MLAlertViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLAlertViewTests.m; sourceTree = "<group>"; };
-		AA33738D181CECDE0090A9C8 /* MLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAlertView.h; sourceTree = "<group>"; };
-		AA33738E181CECDE0090A9C8 /* MLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAlertView.m; sourceTree = "<group>"; };
-		AA411ABF192EADD40060A232 /* MLAlertViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAlertViewButton.h; sourceTree = "<group>"; };
-		AA411AC0192EADD40060A232 /* MLAlertViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAlertViewButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +88,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7C23B5C1CE40CAD007666E6 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				A7C23B321CE39953007666E6 /* TweetbotAlertController.swift */,
+				A7C23B341CE399C0007666E6 /* TweetbotAlertAction.swift */,
+				A7C23B301CE397D7007666E6 /* TweetbotAlertView.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
 		AA33734C181CECBF0090A9C8 = {
 			isa = PBXGroup;
 			children = (
-				AA33735E181CECBF0090A9C8 /* MLAlertView */,
+				AA33735E181CECBF0090A9C8 /* TweetbotAlertController */,
 				AA33737D181CECBF0090A9C8 /* MLAlertViewTests */,
 				AA337357181CECBF0090A9C8 /* Frameworks */,
 				AA337356181CECBF0090A9C8 /* Products */,
@@ -98,8 +111,8 @@
 		AA337356181CECBF0090A9C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA337355181CECBF0090A9C8 /* MLAlertView.app */,
-				AA337376181CECBF0090A9C8 /* MLAlertViewTests.xctest */,
+				AA337355181CECBF0090A9C8 /* TweetbotAlertController.app */,
+				AA337376181CECBF0090A9C8 /* TweetbotAlertController.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,31 +128,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AA33735E181CECBF0090A9C8 /* MLAlertView */ = {
+		AA33735E181CECBF0090A9C8 /* TweetbotAlertController */ = {
 			isa = PBXGroup;
 			children = (
 				AA337367181CECBF0090A9C8 /* MLAppDelegate.h */,
 				AA337368181CECBF0090A9C8 /* MLAppDelegate.m */,
-				AA33736A181CECBF0090A9C8 /* Main.storyboard */,
 				AA33736D181CECBF0090A9C8 /* MLViewController.h */,
 				AA33736E181CECBF0090A9C8 /* MLViewController.m */,
-				AA33738D181CECDE0090A9C8 /* MLAlertView.h */,
-				AA33738E181CECDE0090A9C8 /* MLAlertView.m */,
-				AA411ABF192EADD40060A232 /* MLAlertViewButton.h */,
-				AA411AC0192EADD40060A232 /* MLAlertViewButton.m */,
+				A7C23B5C1CE40CAD007666E6 /* Source */,
 				AA337370181CECBF0090A9C8 /* Images.xcassets */,
 				AA33735F181CECBF0090A9C8 /* Supporting Files */,
+				AA33736A181CECBF0090A9C8 /* Main.storyboard */,
+				A7C23B361CE3BBA3007666E6 /* LaunchScreen.storyboard */,
 			);
+			name = TweetbotAlertController;
 			path = MLAlertView;
 			sourceTree = "<group>";
 		};
 		AA33735F181CECBF0090A9C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AA337360181CECBF0090A9C8 /* MLAlertView-Info.plist */,
+				A7C23B2F1CE397D6007666E6 /* TweetbotAlertController-Bridging-Header.h */,
+				AA337360181CECBF0090A9C8 /* TweetbotAlertController-Info.plist */,
 				AA337361181CECBF0090A9C8 /* InfoPlist.strings */,
 				AA337364181CECBF0090A9C8 /* main.m */,
-				AA337366181CECBF0090A9C8 /* MLAlertView-Prefix.pch */,
+				AA337366181CECBF0090A9C8 /* TweetbotAlertController-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -156,7 +169,7 @@
 		AA33737E181CECBF0090A9C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AA33737F181CECBF0090A9C8 /* MLAlertViewTests-Info.plist */,
+				AA33737F181CECBF0090A9C8 /* TweetbotAlertControllerTests-Info.plist */,
 				AA337380181CECBF0090A9C8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -165,9 +178,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA337354181CECBF0090A9C8 /* MLAlertView */ = {
+		AA337354181CECBF0090A9C8 /* TweetbotAlertController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA337387181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "MLAlertView" */;
+			buildConfigurationList = AA337387181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "TweetbotAlertController" */;
 			buildPhases = (
 				AA337351181CECBF0090A9C8 /* Sources */,
 				AA337352181CECBF0090A9C8 /* Frameworks */,
@@ -177,14 +190,14 @@
 			);
 			dependencies = (
 			);
-			name = MLAlertView;
+			name = TweetbotAlertController;
 			productName = MLAlertView;
-			productReference = AA337355181CECBF0090A9C8 /* MLAlertView.app */;
+			productReference = AA337355181CECBF0090A9C8 /* TweetbotAlertController.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AA337375181CECBF0090A9C8 /* MLAlertViewTests */ = {
+		AA337375181CECBF0090A9C8 /* TweetbotAlertControllerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA33738A181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "MLAlertViewTests" */;
+			buildConfigurationList = AA33738A181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "TweetbotAlertControllerTests" */;
 			buildPhases = (
 				AA337372181CECBF0090A9C8 /* Sources */,
 				AA337373181CECBF0090A9C8 /* Frameworks */,
@@ -195,9 +208,9 @@
 			dependencies = (
 				AA33737C181CECBF0090A9C8 /* PBXTargetDependency */,
 			);
-			name = MLAlertViewTests;
+			name = TweetbotAlertControllerTests;
 			productName = MLAlertViewTests;
-			productReference = AA337376181CECBF0090A9C8 /* MLAlertViewTests.xctest */;
+			productReference = AA337376181CECBF0090A9C8 /* TweetbotAlertController.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -207,7 +220,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ML;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Maximilian Litteral";
 				TargetAttributes = {
 					AA337375181CECBF0090A9C8 = {
@@ -215,7 +228,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA337350181CECBF0090A9C8 /* Build configuration list for PBXProject "MLAlertView" */;
+			buildConfigurationList = AA337350181CECBF0090A9C8 /* Build configuration list for PBXProject "TweetbotAlertController" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -228,8 +241,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA337354181CECBF0090A9C8 /* MLAlertView */,
-				AA337375181CECBF0090A9C8 /* MLAlertViewTests */,
+				AA337354181CECBF0090A9C8 /* TweetbotAlertController */,
+				AA337375181CECBF0090A9C8 /* TweetbotAlertControllerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA337371181CECBF0090A9C8 /* Images.xcassets in Resources */,
+				A7C23B371CE3BBA3007666E6 /* LaunchScreen.storyboard in Resources */,
 				AA337363181CECBF0090A9C8 /* InfoPlist.strings in Resources */,
 				AA33736C181CECBF0090A9C8 /* Main.storyboard in Resources */,
 			);
@@ -260,10 +274,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA33738F181CECDE0090A9C8 /* MLAlertView.m in Sources */,
+				A7C23B311CE397D7007666E6 /* TweetbotAlertView.swift in Sources */,
 				AA337365181CECBF0090A9C8 /* main.m in Sources */,
 				AA33736F181CECBF0090A9C8 /* MLViewController.m in Sources */,
-				AA411AC1192EADD40060A232 /* MLAlertViewButton.m in Sources */,
+				A7C23B351CE399C0007666E6 /* TweetbotAlertAction.swift in Sources */,
+				A7C23B331CE39953007666E6 /* TweetbotAlertController.swift in Sources */,
 				AA337369181CECBF0090A9C8 /* MLAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,7 +296,7 @@
 /* Begin PBXTargetDependency section */
 		AA33737C181CECBF0090A9C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AA337354181CECBF0090A9C8 /* MLAlertView */;
+			target = AA337354181CECBF0090A9C8 /* TweetbotAlertController */;
 			targetProxy = AA33737B181CECBF0090A9C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -332,6 +347,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -346,7 +362,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -378,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -388,11 +404,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MLAlertView/MLAlertView-Prefix.pch";
-				INFOPLIST_FILE = "MLAlertView/MLAlertView-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MLAlertView/TweetbotAlertController-Prefix.pch";
+				INFOPLIST_FILE = "MLAlertView/TweetbotAlertController-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TweetbotAlertController;
+				SWIFT_OBJC_BRIDGING_HEADER = "MLAlertView/TweetbotAlertController-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -401,11 +421,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MLAlertView/MLAlertView-Prefix.pch";
-				INFOPLIST_FILE = "MLAlertView/MLAlertView-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MLAlertView/TweetbotAlertController-Prefix.pch";
+				INFOPLIST_FILE = "MLAlertView/TweetbotAlertController-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TweetbotAlertController;
+				SWIFT_OBJC_BRIDGING_HEADER = "MLAlertView/TweetbotAlertController-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -420,13 +443,14 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MLAlertView/MLAlertView-Prefix.pch";
+				GCC_PREFIX_HEADER = "MLAlertView/TweetbotAlertController-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MLAlertViewTests/MLAlertViewTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "MLAlertViewTests/TweetbotAlertControllerTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TweetbotAlertController;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -442,9 +466,10 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MLAlertView/MLAlertView-Prefix.pch";
-				INFOPLIST_FILE = "MLAlertViewTests/MLAlertViewTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MLAlertView/TweetbotAlertController-Prefix.pch";
+				INFOPLIST_FILE = "MLAlertViewTests/TweetbotAlertControllerTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TweetbotAlertController;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -453,7 +478,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA337350181CECBF0090A9C8 /* Build configuration list for PBXProject "MLAlertView" */ = {
+		AA337350181CECBF0090A9C8 /* Build configuration list for PBXProject "TweetbotAlertController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA337385181CECBF0090A9C8 /* Debug */,
@@ -462,7 +487,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA337387181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "MLAlertView" */ = {
+		AA337387181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "TweetbotAlertController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA337388181CECBF0090A9C8 /* Debug */,
@@ -471,7 +496,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA33738A181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "MLAlertViewTests" */ = {
+		AA33738A181CECBF0090A9C8 /* Build configuration list for PBXNativeTarget "TweetbotAlertControllerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA33738B181CECBF0090A9C8 /* Debug */,
